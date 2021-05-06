@@ -3,6 +3,7 @@ import {
    GET_USERS,
     SET_NEW_USER
 } from './types';
+
 import axios from 'axios';
 
 export const createUser =  (user) => dispatch => {

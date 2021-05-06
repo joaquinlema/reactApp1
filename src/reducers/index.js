@@ -1,8 +1,10 @@
 import {combineReducers} from 'redux';
-import FormularioReducer from './FormularioReducer';
-import HomeReducer from './HomeReducer';
+import FormularioUsuarioReducer from './FormularioUsuarioReducer';
+import UsuarioReducer from './UsuarioReducer';
 
-export default combineReducers({
-    formularioReducer: FormularioReducer,
-    homeReducer: HomeReducer
+const rootReducer =  combineReducers({
+     FormularioUsuarioReducer,
+     UsuarioReducer
 });
+
+export default rootReducer;

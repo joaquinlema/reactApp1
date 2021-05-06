@@ -1,17 +1,20 @@
 import React from "react";
-import { connect } from 'react-redux';
-import { getUsers } from '../../../actions/HomeActions';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUsers } from '../../../../actions/UsuarioActions';
 import {  useEffect } from 'react';
 import MUIDataTable from "mui-datatables";
 
-const UserTable = ({homeReducer: {users}, getUsers}) => {
+const UserTable = () => {
+
+    const {users} = useSelector(state => state.UsuarioReducer);
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        getUsers();
+        dispatch(getUsers());
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const columns = ["Id", "Name", "Year"];
+    const columns = ["Id", "Name"];
 
     const options = {
         filter: true,
@@ -19,26 +22,21 @@ const UserTable = ({homeReducer: {users}, getUsers}) => {
     };
 
     return (
-        <React.Fragment>
+        <div style={{    width: '100%', margin: '4%'}}>
 
             <MUIDataTable
-                title={"Employee list"}
+                title={"Listado Usuarios"}
                 data={users.map(e=>{
                     return [
                         e.id,
-                        e.name,
-                        e.year
+                        e.name
                     ]
                 })}
                 columns={columns}
                 options={options}
             />
-        </React.Fragment>
+        </div>
     );
 }
 
-const mapProps = state => ({
-    homeReducer: state.homeReducer
-})
-
-export default connect(mapProps, { getUsers })(UserTable)
+export default UserTable;
