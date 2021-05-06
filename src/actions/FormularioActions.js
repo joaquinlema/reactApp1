@@ -13,7 +13,7 @@ export const setLoading = () => {
 
 export const createUser = (user) => async dispatch => {
     try {
-        const { data } = await Axios.post('/api/users', { data: { name: user.nombre, apellido: user.apellido, email: user.email } });
+        const { data } = await Axios.post('/api/users', { data: { name: user.name, apellido: user.apellido, email: user.email } });
 
         dispatch({
             type: SET_NEW_USER,

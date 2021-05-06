@@ -39,7 +39,7 @@ export function makeServer({ environment = "test" } = {}) {
 
       this.patch("/users/edit/:id", function (schema, request) {
         let id = request.params.id
-        let attrs = this.normalizedRequestAttrs();
+        let attrs = JSON.parse(request.requestBody).data;
       
         return schema.users.find(id).update(attrs)
       });

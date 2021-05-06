@@ -17,7 +17,7 @@ const FormularioUsuario = () => {
     const {userEdit, editStatus}  = useSelector(state => state.UsuarioReducer);
     
     const SignupSchema = Yup.object().shape({
-        nombre: Yup.string().min(2, 'Too Short!').max(70, 'Too Long!').matches(/^[a-zA-Z ]+$/,"Invalid Name only letters").required('Required'),
+        name: Yup.string().min(2, 'Too Short!').max(70, 'Too Long!').matches(/^[a-zA-Z ]+$/,"Invalid Name only letters").required('Required'),
         apellido: Yup.string().min(2, 'Too Short!').max(70, 'Too Long!').matches(/^[a-zA-Z ]+$/,"Invalid SurName only letters").required('Required'),
         email: Yup.string().email('Invalid Mail Format').required('Required'),
     });
@@ -26,7 +26,7 @@ const FormularioUsuario = () => {
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <Formik
                 initialValues={{
-                    nombre: (userEdit.name !== '') ? userEdit.name : '',
+                    name: (userEdit.name !== '') ? userEdit.name : '',
                     apellido: (userEdit.apellido !== '') ? userEdit.apellido : '',
                     email: (userEdit.email !== '') ? userEdit.email : '',
                 }}
@@ -50,7 +50,7 @@ const FormularioUsuario = () => {
 
                             <Grid item xs={12} md={6} lg={6}>
 
-                                <MyTextField name="nombre" type="text" label="Nombre" placeholder="Nombre" InputProps={{
+                                <MyTextField name="name" type="text" label="Nombre" placeholder="Nombre" InputProps={{
                                         startAdornment: (
                                             <InputAdornment position="start">
                                                 <AccountCircle />
