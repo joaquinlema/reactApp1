@@ -7,3 +7,4 @@ export const GET_USERS = 'GET_USERS';
 export const DELETE_USER = 'DELETE_USER';
 export const UPDATE_USER = 'UPDATE_USER';
 export const STATUS_FORMULARIO = 'STATUS_FORMULARIO';
+export const UPDATE_USER_LIST = 'UPDATE_USER_LIST';

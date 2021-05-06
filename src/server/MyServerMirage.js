@@ -37,7 +37,7 @@ export function makeServer({ environment = "test" } = {}) {
         return schema.users.find(id).destroy();
       });
 
-      this.patch("/users/edit:id", function (schema, request) {
+      this.patch("/users/edit/:id", function (schema, request) {
         let id = request.params.id
         let attrs = this.normalizedRequestAttrs();
       

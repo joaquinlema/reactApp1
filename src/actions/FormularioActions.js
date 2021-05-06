@@ -1,7 +1,7 @@
 import Axios from 'axios';
 import { 
     SET_ERROR,
-    SET_LOADING, SET_NEW_USER, UPDATE_USER,
+    SET_LOADING, SET_NEW_USER, UPDATE_USER_LIST,
 } from './types';
 //import axios from 'axios';
 
@@ -31,10 +31,10 @@ export const createUser = (user) => async dispatch => {
 
 export const editUser = (newValues,id) => async dispatch => {
     try {
-        const { data } = await Axios.patch('/api/users/edit'+id, {data: newValues});
+        const { data } = await Axios.patch('/api/users/edit/'+id, {data: newValues});
         console.log(data);
         dispatch({
-            type: UPDATE_USER,
+            type: UPDATE_USER_LIST,
             payload: data.user
         });
 

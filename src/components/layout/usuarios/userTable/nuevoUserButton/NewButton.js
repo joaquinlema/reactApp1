@@ -12,7 +12,7 @@ const NewButton = () => {
         variant="contained"
         color="primary"
         endIcon={<AddCircleOutlineRoundedIcon />}
-        onClick={dispatch(abrirFormulario(true))}
+        onClick={() => dispatch(abrirFormulario(true))}
       >
         Nuevo
       </Button>

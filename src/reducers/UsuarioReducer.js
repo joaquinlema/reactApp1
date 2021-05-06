@@ -5,7 +5,8 @@ import {
     GET_USERS,
     DELETE_USER,
     UPDATE_USER,
-    STATUS_FORMULARIO
+    STATUS_FORMULARIO,
+    UPDATE_USER_LIST
 } from '../actions/types';
  
 const initialState = {
@@ -14,21 +15,26 @@ const initialState = {
     users:[],
     userEdit:{},
     editStatus: false,
-    abrirFormulario: false
+    abrirFormularioStatus: false
 }
 const UsuarioReducer =  (state = initialState, action) => {
     switch(action.type){
+        case UPDATE_USER_LIST:
+            return{
+                ...state,
+                users: state.users.map(elem => elem.id === action.payload.id ? action.payload : elem)
+            }
         case STATUS_FORMULARIO:
             return{
                 ...state,
-                abrirFormulario: action.payload
+                abrirFormularioStatus: action.payload
             }
         case UPDATE_USER:
             return{
                 ...state,
                 userEdit:action.payload,
                 editStatus:true,
-                abrirFormulario:true
+                abrirFormularioStatus:true
             }
         case SET_ERROR:
             return {

@@ -1,12 +1,13 @@
 import { Grid } from '@material-ui/core';
 import React from 'react';
 import UserTable from '../layout/usuarios/userTable/UserTable';
-import FormularioUsuario from '../layout/usuarios/form/FormularioUsuario';
 import NewButton from '../layout/usuarios/userTable/nuevoUserButton/NewButton';
+import UserFormDialog from '../layout/usuarios/dialog/userFormDialog';
 import { useSelector } from 'react-redux';
 
 const UsuarioPagina = () => {
-    const {abrirFormulario} = useSelector(state => state.UsuarioReducer);
+  const {abrirFormularioStatus} = useSelector(state => state.UsuarioReducer);
+
     return (
         <Grid
         container
@@ -18,7 +19,7 @@ const UsuarioPagina = () => {
         </Grid>
 
         <Grid container item xs={12} sm={12} md={4} lg={4}>
-            {abrirFormulario && <FormularioUsuario /> }
+            <UserFormDialog open={abrirFormularioStatus} />
         </Grid>
         
     </Grid>
