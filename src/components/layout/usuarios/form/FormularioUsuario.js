@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {createUser,editUser} from '../../../../actions/FormularioActions';
+import {abrirFormulario} from '../../../../actions/UsuarioActions';
 import { Formik, Form} from 'formik';
 import { Button, LinearProgress, Grid } from '@material-ui/core';
 import InputAdornment from '@material-ui/core/InputAdornment';
@@ -38,6 +39,7 @@ const FormularioUsuario = () => {
                             dispatch(createUser(values));
                         }
                         setSubmitting(false);
+                        dispatch(abrirFormulario(false));
                         resetForm();
                     }, 500);
                 }}

@@ -6,3 +6,4 @@ export const SET_NEW_USER = 'SET_NEW_USER';
 export const GET_USERS = 'GET_USERS';
 export const DELETE_USER = 'DELETE_USER';
 export const UPDATE_USER = 'UPDATE_USER';
+export const STATUS_FORMULARIO = 'STATUS_FORMULARIO';

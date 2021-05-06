@@ -2,6 +2,7 @@ import {
     DELETE_USER,
     GET_USERS,
     SET_ERROR,
+    STATUS_FORMULARIO,
     UPDATE_USER
 } from './types';
 
@@ -58,4 +59,13 @@ export const deleteUser = (id) => async dispatch => {
         });
 
     }
+}
+
+export const abrirFormulario = (status) =>  dispatch => {
+      
+    dispatch({
+        type: STATUS_FORMULARIO,
+        payload: status
+    });
+
 }

@@ -4,7 +4,8 @@ import {
     SET_NEW_USER,
     GET_USERS,
     DELETE_USER,
-    UPDATE_USER
+    UPDATE_USER,
+    STATUS_FORMULARIO
 } from '../actions/types';
  
 const initialState = {
@@ -12,15 +13,22 @@ const initialState = {
     error: '',
     users:[],
     userEdit:{},
-    editStatus: false
+    editStatus: false,
+    abrirFormulario: false
 }
 const UsuarioReducer =  (state = initialState, action) => {
     switch(action.type){
+        case STATUS_FORMULARIO:
+            return{
+                ...state,
+                abrirFormulario: action.payload
+            }
         case UPDATE_USER:
             return{
                 ...state,
                 userEdit:action.payload,
-                editStatus:true
+                editStatus:true,
+                abrirFormulario:true
             }
         case SET_ERROR:
             return {
