@@ -11,8 +11,21 @@ import DateFnsUtils from '@date-io/date-fns';
 import MyTextField from './textField/MyTextField';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import * as Yup from "yup";
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+    grid: {
+      width: '100%',
+      margin: '2%',
+    },
+    botones: {
+        marginLeft: '29%'
+    }
+  }));
 
 const FormularioUsuario = () => {
+    const classes = useStyles();
+
     const dispatch = useDispatch();
     const {userEdit, editStatus}  = useSelector(state => state.UsuarioReducer);
     
@@ -48,9 +61,9 @@ const FormularioUsuario = () => {
                     <Form>
                         <Grid container>
 
-                            <Grid item xs={12} md={6} lg={6}>
+                            <Grid item xs={12} md={12} lg={12}>
 
-                                <MyTextField name="name" type="text" label="Nombre" placeholder="Nombre" InputProps={{
+                                <MyTextField className={classes.grid} name="name" type="text" label="Nombre" placeholder="Nombre" InputProps={{
                                         startAdornment: (
                                             <InputAdornment position="start">
                                                 <AccountCircle />
@@ -59,8 +72,8 @@ const FormularioUsuario = () => {
                                     }}/>
 
                             </Grid>
-                            <Grid item xs={12} md={6} lg={6}>
-                                <MyTextField name="apellido" type="text" label="Apellido" placeholder="Apellido" InputProps={{
+                            <Grid item xs={12} md={12} lg={12}>
+                                <MyTextField className={classes.grid}  name="apellido" type="text" label="Apellido" placeholder="Apellido" InputProps={{
                                         startAdornment: (
                                             <InputAdornment position="start">
                                                 <AccountCircle />
@@ -70,8 +83,8 @@ const FormularioUsuario = () => {
 
                             </Grid>
 
-                            <Grid item xs={12} md={6} lg={6}>
-                                <MyTextField name="email" type="Email" label="Email" placeholder="Email"  InputProps={{
+                            <Grid item xs={12} md={12} lg={12}>
+                                <MyTextField className={classes.grid}  name="email" type="Email" label="Email" placeholder="Email"  InputProps={{
                                         startAdornment: (
                                             <InputAdornment position="start">
                                                 <ContactMailRoundedIcon />
@@ -86,7 +99,7 @@ const FormularioUsuario = () => {
                                 {isSubmitting && <LinearProgress />}
                             </Grid>
 
-                            <Grid item xs={12} md={12} lg={12} className='botonesForm'>
+                            <Grid item xs={12} md={12} lg={12} className={classes.botones}>
                                 <Button
                                     variant="contained"
                                     color="primary"

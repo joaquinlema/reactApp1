@@ -15,7 +15,8 @@ const initialState = {
     users:[],
     userEdit:{},
     editStatus: false,
-    abrirFormularioStatus: false
+    abrirFormularioStatus: false,
+    tituloFormulario: 'Formulario Nuevo'
 }
 const UsuarioReducer =  (state = initialState, action) => {
     switch(action.type){
@@ -24,18 +25,23 @@ const UsuarioReducer =  (state = initialState, action) => {
                 ...state,
                 users: state.users.map(elem => elem.id === action.payload.id ? action.payload : elem),
                 editStatus:false,
+                tituloFormulario:'Formulario Nuevo',
                 userEdit:{}
             }
         case STATUS_FORMULARIO:
             return{
                 ...state,
-                abrirFormularioStatus: action.payload
+                abrirFormularioStatus: action.payload,
+                tituloFormulario:'Formulario Nuevo',
+                userEdit:{},
+                editStatus:false,
             }
         case UPDATE_USER:
             return{
                 ...state,
                 userEdit:action.payload,
                 editStatus:true,
+                tituloFormulario:'Formulario Edicion',
                 abrirFormularioStatus:true
             }
         case SET_ERROR:
