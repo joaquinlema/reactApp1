@@ -7,44 +7,60 @@ export function makeServer({ environment = "test" } = {}) {
     models: {
       user: Model,
       nacionality:Model,
-      edad: Model,
+      task: Model
     },
 
     seeds(server) {
-      server.create("user", { name: "Bob", year: '2020' });
-      server.create("user", { name: "Alice", year: '2020' });
+      server.create("user", { name: "Bob", apellido: 'Wills',email:'j@hotmail.com' });
+      server.create("user", { name: "Alice", apellido: 'McDonal',email:'j@hotmail.com' });
       server.create("nacionality",{name: 'Argentina'});
-      server.create("nacionality",{name: 'Brasil'});
-      server.create("edad",{name:'Menor 18',val: 1});
-      server.create("edad",{name:'Mayor 18', val:18});
+      server.create("task",{name: 'Argentina'});
+
     },
 
     routes() {
       this.namespace = "api";
 
-      this.get("/edades", (schema) => {
-        return schema.edads.all()
-      })
-
       this.get("/users", (schema) => {
         return schema.users.all()
-      })
+      });
 
       this.post("/users", (schema, request) => {
-        let attrs = JSON.parse(request.requestBody)
+        let attrs = JSON.parse(request.requestBody).data;
 
         return schema.users.create(attrs)
-      })
+      });
 
-      this.get("/nacionalidades", (schema) => {
-        return schema.nacionalities.all()
-      })
+      this.post("/users/delete/:id", (schema, request) => {
+        let id = request.params.id
+      
+        return schema.users.find(id).destroy();
+      });
 
-      this.post("/nacionalidades", (schema, request) => {
-        let attrs = JSON.parse(request.requestBody)
+      this.patch("/users/edit:id", function (schema, request) {
+        let id = request.params.id
+        let attrs = this.normalizedRequestAttrs();
+      
+        return schema.users.find(id).update(attrs)
+      });
 
-        return schema.nacionalities.create(attrs)
-      })
+      this.get("/tasks", (schema) => {
+        return schema.tasks.all()
+      });
+
+      this.post("/tasks", (schema, request) => {
+        let attrs = JSON.parse(request.requestBody).data;
+
+        return schema.tasks.create(attrs)
+      });
+
+      this.delete("/tasks/:id", (schema, request) => {
+        let id = request.params.id
+      
+        return schema.tasks.find(id).destroy();
+      });
+
+
     },
   })
 

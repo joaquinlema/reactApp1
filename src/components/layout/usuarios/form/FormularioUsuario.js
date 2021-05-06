@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { useDispatch } from 'react-redux';
-import {createUser} from '../../../../actions/UsuarioActions';
+import { useDispatch, useSelector } from 'react-redux';
+import {createUser,editUser} from '../../../../actions/FormularioActions';
 import { Formik, Form} from 'formik';
 import { Button, LinearProgress, Grid } from '@material-ui/core';
 import InputAdornment from '@material-ui/core/InputAdornment';
@@ -13,6 +13,7 @@ import * as Yup from "yup";
 
 const FormularioUsuario = () => {
     const dispatch = useDispatch();
+    const {userEdit, editStatus}  = useSelector(state => state.UsuarioReducer);
     
     const SignupSchema = Yup.object().shape({
         nombre: Yup.string().min(2, 'Too Short!').max(70, 'Too Long!').matches(/^[a-zA-Z ]+$/,"Invalid Name only letters").required('Required'),
@@ -24,14 +25,18 @@ const FormularioUsuario = () => {
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <Formik
                 initialValues={{
-                    nombre: '',
-                    apellido: '',
-                    email: '',
+                    nombre: (userEdit.name !== '') ? userEdit.name : '',
+                    apellido: (userEdit.apellido !== '') ? userEdit.apellido : '',
+                    email: (userEdit.email !== '') ? userEdit.email : '',
                 }}
                 validationSchema={SignupSchema}
                 onSubmit={(values, { setSubmitting,resetForm }) => {
                     setTimeout(() => {
-                        dispatch(createUser(values));
+                        if(editStatus){
+                            dispatch(editUser(values,userEdit.id));
+                        }else{
+                            dispatch(createUser(values));
+                        }
                         setSubmitting(false);
                         resetForm();
                     }, 500);
@@ -86,7 +91,7 @@ const FormularioUsuario = () => {
                                     disabled={isSubmitting}
                                     onClick={submitForm}
                                 >
-                                    Guardar
+                                     {editStatus ? 'Actualizar' : 'Guardar'}
                                 </Button>
                                 <Button
                                     variant="contained"

@@ -1,8 +1,9 @@
 import React from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { getUsers } from '../../../../actions/UsuarioActions';
+import { getUsers, deleteUser,setEditUser } from '../../../../actions/UsuarioActions';
 import {  useEffect } from 'react';
 import MUIDataTable from "mui-datatables";
+import { Button } from "@material-ui/core";
 
 const UserTable = () => {
 
@@ -14,11 +15,44 @@ const UserTable = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const columns = ["Id", "Name"];
+    const columns = ["Id", "Name","Apellido","Email",
+    {
+        name: "Delete",
+        options: {
+          filter: true,
+          sort: false,
+          empty: true,
+          customBodyRender: (value, tableMeta, updateValue) => {
+            return (
+              <Button onClick={() => {
+               dispatch(deleteUser(tableMeta.rowData[0]))
+              }}>
+                Delete
+              </Button>
+            );
+          }
+        }
+      },
+      {
+        name: "Edit",
+        options: {
+          filter: true,
+          sort: false,
+          empty: true,
+          customBodyRender: (value, tableMeta, updateValue) => {
+            return (
+              <Button onClick={() => dispatch(setEditUser({'id':tableMeta.rowData[0],'name':tableMeta.rowData[1], 'apellido':tableMeta.rowData[2], 'email':tableMeta.rowData[3] }))}>
+                Edit
+              </Button>
+            );
+          }
+        }
+      }
+];
 
     const options = {
         filter: true,
-        filterType: "dropdown",
+        selectableRows: false,
     };
 
     return (
@@ -29,7 +63,9 @@ const UserTable = () => {
                 data={users.map(e=>{
                     return [
                         e.id,
-                        e.name
+                        e.name,
+                        e.apellido,
+                        e.email
                     ]
                 })}
                 columns={columns}

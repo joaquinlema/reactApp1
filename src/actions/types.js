@@ -4,3 +4,5 @@ export const SET_NACIONALIDADES = 'SET_NACIONALIDADES';
 export const SET_EDADES = 'SET_EDADES';
 export const SET_NEW_USER = 'SET_NEW_USER';
 export const GET_USERS = 'GET_USERS';
+export const DELETE_USER = 'DELETE_USER';
+export const UPDATE_USER = 'UPDATE_USER';

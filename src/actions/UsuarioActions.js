@@ -1,34 +1,61 @@
-import { 
-   // SET_ERROR, 
-   GET_USERS,
-    SET_NEW_USER
+import {
+    DELETE_USER,
+    GET_USERS,
+    SET_ERROR,
+    UPDATE_USER
 } from './types';
 
 import axios from 'axios';
 
-export const createUser =  (user) => dispatch => {
-    const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: user.nombre, year: 2021})
-    };
+export const getUsers = () => async dispatch => {
+    try {
+        const { data } = await axios.get('/api/users');
 
-    fetch('/api/users', requestOptions)
-    .then(response => response.json())
-    .then(data => {
         dispatch({
-                    type:SET_NEW_USER,
-                    payload: data.user
-                })        
-            }            
-        );
+            type: GET_USERS,
+            payload: data.users
+        });
+
+    } catch (error) {
+        dispatch({
+            type: SET_ERROR,
+            payload: error
+        });
+
+    }
 }
 
-export const getUsers = () => dispatch => {
-    axios.get('/api/users')
-    .then((json) => 
+export const setEditUser = (elem) => async dispatch => {
+    try {
         dispatch({
-            type : GET_USERS,
-            payload: json.data.users
-        }))
-} 
+            type: UPDATE_USER,
+            payload: elem
+        });
+
+    } catch (error) {
+        dispatch({
+            type: SET_ERROR,
+            payload: error
+        });
+
+    }
+}
+
+
+export const deleteUser = (id) => async dispatch => {
+    try {
+        const { data } = await axios.post('/api/users/delete/'+id);
+        console.log(data);
+        dispatch({
+            type: DELETE_USER,
+            payload: id
+        });
+
+    } catch (error) {
+        dispatch({
+            type: SET_ERROR,
+            payload: error
+        });
+
+    }
+}

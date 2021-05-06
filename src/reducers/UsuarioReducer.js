@@ -2,16 +2,26 @@ import {
     SET_ERROR, 
     SET_LOADING,
     SET_NEW_USER,
-    GET_USERS
+    GET_USERS,
+    DELETE_USER,
+    UPDATE_USER
 } from '../actions/types';
  
 const initialState = {
     loading: false,
     error: '',
-    users:[]
+    users:[],
+    userEdit:{},
+    editStatus: false
 }
 const UsuarioReducer =  (state = initialState, action) => {
     switch(action.type){
+        case UPDATE_USER:
+            return{
+                ...state,
+                userEdit:action.payload,
+                editStatus:true
+            }
         case SET_ERROR:
             return {
                 ...state,
@@ -33,6 +43,12 @@ const UsuarioReducer =  (state = initialState, action) => {
                 ...state,
                 users: [...state.users,action.payload]
             }
+        case DELETE_USER:
+            return{
+                ...state,
+                // eslint-disable-next-line eqeqeq
+                users: state.users.filter(elem => { return (elem.id != action.payload)})
+        }
         default:
             return state;
     }
