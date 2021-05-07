@@ -112,7 +112,7 @@ const FormularioUsuario = () => {
                                     variant="contained"
                                     color="secondary"
                                     disabled={isSubmitting}
-                                    onClick={() => { alert('cancelado') }}
+                                    onClick={() => { dispatch(abrirFormulario(false));}}
                                 >
                                     Cancelar
                                 </Button>

@@ -6,15 +6,13 @@ export function makeServer({ environment = "test" } = {}) {
 
     models: {
       user: Model,
-      nacionality:Model,
       task: Model
     },
 
     seeds(server) {
       server.create("user", { name: "Bob", apellido: 'Wills',email:'j@hotmail.com' });
       server.create("user", { name: "Alice", apellido: 'McDonal',email:'j@hotmail.com' });
-      server.create("nacionality",{name: 'Argentina'});
-      server.create("task",{name: 'Argentina'});
+      server.create("task",{codigo: 'Argentina', descripcion: 'descripcion',duracionPlanificada: '', usuarioId:0});
 
     },
 
@@ -54,12 +52,18 @@ export function makeServer({ environment = "test" } = {}) {
         return schema.tasks.create(attrs)
       });
 
-      this.delete("/tasks/:id", (schema, request) => {
+      this.post("/tasks/delete/:id", (schema, request) => {
         let id = request.params.id
       
         return schema.tasks.find(id).destroy();
       });
 
+      this.patch("/tasks/edit/:id", function (schema, request) {
+        let id = request.params.id
+        let attrs = JSON.parse(request.requestBody).data;
+      
+        return schema.tasks.find(id).update(attrs)
+      });
 
     },
   })
