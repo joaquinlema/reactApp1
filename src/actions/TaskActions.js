@@ -68,5 +68,4 @@ export const abrirFormularioTask = (status) =>  dispatch => {
         type: STATUS_FORMULARIO,
         payload: status
     });
-
 }

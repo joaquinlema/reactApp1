@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { getTasks } from '../../../actions/TaskActions';
+import { deleteTask, getTasks, setEditTask } from '../../../actions/TaskActions';
 import {  useEffect } from 'react';
 import MUIDataTable from "mui-datatables";
 import { Button } from "@material-ui/core";
@@ -25,7 +25,7 @@ const TareaTable = () => {
           customBodyRender: (value, tableMeta, updateValue) => {
             return (
               <Button onClick={() => {
-               //dispatch(deleteUser(tableMeta.rowData[0]))
+               dispatch(deleteTask(tableMeta.rowData[0]))
               }}>
                 Delete
               </Button>
@@ -41,7 +41,7 @@ const TareaTable = () => {
           empty: true,
           customBodyRender: (value, tableMeta, updateValue) => {
             return (
-              <Button onClick={() =>{}}>
+              <Button onClick={() => dispatch(setEditTask({'id':tableMeta.rowData[0],'codigo':tableMeta.rowData[1], 'descripcion':tableMeta.rowData[2], 'duracionPlanificada':tableMeta.rowData[3],'usuarioId':tableMeta.rowData[4] }))}>
                 Edit
               </Button>
             );
