@@ -45,8 +45,8 @@ export const setEditUser = (elem) => async dispatch => {
 
 export const deleteUser = (id) => async dispatch => {
     try {
+        // eslint-disable-next-line no-unused-vars
         const { data } = await axios.post('/api/users/delete/'+id);
-        console.log(data);
         dispatch({
             type: DELETE_USER,
             payload: id
