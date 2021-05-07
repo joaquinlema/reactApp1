@@ -62,7 +62,7 @@ export const deleteTask = (id) => async dispatch => {
     }
 }
 
-export const abrirFormulario = (status) =>  dispatch => {
+export const abrirFormularioTask = (status) =>  dispatch => {
       
     dispatch({
         type: STATUS_FORMULARIO,
