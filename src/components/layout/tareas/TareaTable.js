@@ -3,7 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { deleteTask, getTasks, setEditTask } from '../../../actions/TaskActions';
 import {  useEffect } from 'react';
 import MUIDataTable from "mui-datatables";
-import { Button } from "@material-ui/core";
+import { IconButton } from "@material-ui/core";
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
 
 const TareaTable = () => {
 
@@ -24,11 +26,11 @@ const TareaTable = () => {
           empty: true,
           customBodyRender: (value, tableMeta, updateValue) => {
             return (
-              <Button onClick={() => {
-               dispatch(deleteTask(tableMeta.rowData[0]))
-              }}>
-                Delete
-              </Button>
+              <IconButton color="primary" aria-label="upload picture" component="span" onClick={() => {
+                dispatch(deleteTask(tableMeta.rowData[0]))
+               }}>
+                <DeleteIcon />
+              </IconButton>
             );
           }
         }
@@ -41,9 +43,9 @@ const TareaTable = () => {
           empty: true,
           customBodyRender: (value, tableMeta, updateValue) => {
             return (
-              <Button onClick={() => dispatch(setEditTask({'id':tableMeta.rowData[0],'codigo':tableMeta.rowData[1], 'descripcion':tableMeta.rowData[2], 'duracionPlanificada':tableMeta.rowData[3],'usuarioId':tableMeta.rowData[4] }))}>
-                Edit
-              </Button>
+              <IconButton color="primary" aria-label="upload picture" component="span" onClick={() => dispatch(setEditTask({'id':tableMeta.rowData[0],'codigo':tableMeta.rowData[1], 'descripcion':tableMeta.rowData[2], 'duracionPlanificada':tableMeta.rowData[3],'usuarioId':tableMeta.rowData[4] }))}>
+                <EditIcon />
+              </IconButton>
             );
           }
         }
