@@ -12,7 +12,7 @@ export function makeServer({ environment = "test" } = {}) {
     seeds(server) {
       server.create("user", { name: "Bob", apellido: 'Wills',email:'j@hotmail.com' });
       server.create("user", { name: "Alice", apellido: 'McDonal',email:'j@hotmail.com' });
-      server.create("task",{codigo: 'Argentina', descripcion: 'descripcion',duracionPlanificada: '', usuarioId:0});
+      server.create("task",{codigo: 'Argentina', descripcion: 'descripcion',duracionPlanificada: '45 min', usuarioId:'0'});
 
     },
 

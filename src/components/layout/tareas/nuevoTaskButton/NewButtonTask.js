@@ -1,22 +1,22 @@
 import { Button } from '@material-ui/core';
 import React from 'react';
 import AddCircleOutlineRoundedIcon from '@material-ui/icons/AddCircleOutlineRounded';
-import { useDispatch } from 'react-redux';
-import {abrirFormulario} from '../../../../../actions/UsuarioActions';
+//import { useDispatch } from 'react-redux';
+//import {} from '../../../../../actions/TaskActions';
 
-const NewButton = () => {
-    const dispatch = useDispatch();
+const NewButtonTask = () => {
+    //const dispatch = useDispatch();
 
     return (
         <Button
         variant="contained"
         color="primary"
         endIcon={<AddCircleOutlineRoundedIcon />}
-        onClick={() => dispatch(abrirFormulario(true))}
+        //onClick={() => dispatch(abrirFormulario(true))}
       >
-        Nuevo Usuario
+        Nueva tarea
       </Button>
     );
 }
 
-export default NewButton;
+export default NewButtonTask;
