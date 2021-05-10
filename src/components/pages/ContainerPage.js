@@ -24,7 +24,7 @@ import About from './About';
 import NotFound from './NotFound';
 import UsuarioPagina from './UsuarioPagina';
 import TareaPage from './TareaPage';
-//import { useHistory } from "react-router-dom";
+import SettingsApplicationsRoundedIcon from '@material-ui/icons/SettingsApplicationsRounded';
 import { createBrowserHistory } from "history";
 
 const drawerWidth = 240;
@@ -160,6 +160,13 @@ export default function MiniDrawer() {
               <ListItemText primary={elem.text} />
             </ListItem>
           ))}
+        </List>
+        <Divider />
+        <List>
+          <ListItem button component={Link} to='/about' >
+              <ListItemIcon><SettingsApplicationsRoundedIcon/></ListItemIcon>
+              <ListItemText primary='About' />
+            </ListItem>
         </List>
       </Drawer>
       <main className={classes.content}>
