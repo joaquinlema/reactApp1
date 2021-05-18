@@ -59,7 +59,7 @@ const FormularioTask = () => {
                     }, 500);
                 }}
             >
-                {({ submitForm, isSubmitting, setFieldValue,initialValues}) => (
+                {({ submitForm, isSubmitting, setFieldValue,initialValues, touched, errors}) => (
                     <Form>
                         <Grid container>
 
@@ -114,7 +114,11 @@ const FormularioTask = () => {
                                         }
                                     </Field>
                                 </FormControl>
-
+                                {errors.usuarioId &&
+                                    touched.usuarioId &&
+                                    <div className="input-feedback">
+                                    {errors.usuarioId}
+                                    </div>}
                             </Grid>
   
 
